@@ -33,16 +33,17 @@ if __name__ == '__main__':
     for author in publications:
         out_json[author] = {}
         for pub in publications[author]:
-            print("Getting text for: " + pub['bib']['title'])
-            url = pub['pub_url']
-            driver.get(url)
-            html = driver.page_source
-            soup = BeautifulSoup(html)
-            out_json[author][pub['bib']['title']] = soup.get_text()
-            # print(out_json[author][pub['bib']['title']])
-            if i % 100 == 0:
-                with open(f'publications_text_{i}.json', 'w') as f:
-                    json.dump(out_json, f, indent=4)
+            if pub['bib']['title'] != 'Orientations of side chains and adsorbed liquid crystal molecules on a rubbed polyimide surface studied by optical second harmonic generation':
+                print("Getting text for: " + pub['bib']['title'])
+                url = pub['pub_url']
+                driver.get(url)
+                html = driver.page_source
+                soup = BeautifulSoup(html)
+                out_json[author][pub['bib']['title']] = soup.get_text()
+                # print(out_json[author][pub['bib']['title']])
+                if i % 100 == 0:
+                    with open(f'publications_text_{i}.json', 'w') as f:
+                        json.dump(out_json, f, indent=4)
             i += 1
 
     with open(f'publications_text_{i}.json', 'w') as f:
