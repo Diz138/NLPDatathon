@@ -31,7 +31,7 @@ if __name__ == '__main__':
         publications = json.load(f)
     i = 0
     for author in publications:
-        if author != 'xiaowei zhuang' and 'long cai':
+        if author not in ['xiaowei zhuang', 'long cai']:
             out_json[author] = {}
             for pub in publications[author]:
 
